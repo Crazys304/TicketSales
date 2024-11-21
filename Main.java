@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner obj = new Scanner(System.in);
         ArrayList<Double> Prices = new ArrayList<Double>();
-
+        double sum = 0;
 
         while (true) {
             //try {
@@ -72,8 +72,34 @@ public class Main {
                     for (int i = 0; i < Prices.size(); i++) {
                         System.out.println(Prices.get(i) + "€");
                     }
-                }
+                } else if (number == 5) {
+                    for (Double num : Prices) {
+                        sum += num;
+                    }
+                    System.out.println("Total sales: " + sum);
 
+                }else if (number == 6) {
+                    double average = sum / Prices.size();
+                    System.out.println("Average: " + average);
+
+                }else if (number == 7) {
+                    double max = Prices.getFirst();
+                    // loop to find maximum value from ArrayList
+                    for (int i = 1; i < Prices.size(); i++) {
+                        if (max < Prices.get(i))
+                            max = Prices.get(i);
+                    }
+                    System.out.println("Maximum ticket price is : " + max);
+
+                }else if (number == 8) {
+                    double min = Prices.getFirst();
+                    // loop to find minimum value from ArrayList
+                    for (int i = 1; i < Prices.size(); i++) {
+                        if (min > Prices.get(i))
+                            min = Prices.get(i);
+                    }
+                    System.out.println("Minimum ticket price is : " + min);
+                }
                 else if (number == 9) {
                     System.out.println("Thank you have a great day! \nExiting...");
                     obj.close();
