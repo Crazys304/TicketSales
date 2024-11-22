@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,7 +9,7 @@ public class Main {
         double sum = 0;
 
         while (true) {
-            //try {
+            try {
                 System.out.println(
                         "----------------------------------" +
                                 "\n|  Ticket sales management system  |" +
@@ -30,81 +31,117 @@ public class Main {
                 obj.nextLine();
 
                 if (number == 1) {
-                    System.out.println("Enter the ticket price: ");
-                    double price = obj.nextDouble();
+                    try{
+                        System.out.println("Enter the ticket price: ");
+                        double price = obj.nextDouble();
 
-                    Prices.add(price);
-                }
-                else if (number == 2) {
-                    System.out.println("Ticket Prices:");
+                        Prices.add(price);
 
-                    int u = 0;
-                    for (int i = 0; i < Prices.size(); i++) {
-                        u++;
-                        System.out.println(u + ". " + Prices.get(i) + "€");
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input.");
                     }
+                } else if (number == 2) {
+                    try{
+                        System.out.println("Ticket Prices:");
 
-                    System.out.println("Enter the ticket id number: ");
-                    int id = obj.nextInt();
-                    System.out.println("Enter the ticket price: ");
-                    double price = obj.nextDouble();
+                        int u = 0;
+                        for (int i = 0; i < Prices.size(); i++) {
+                            u++;
+                            System.out.println(u + ". " + Prices.get(i) + "€");
+                        }
 
-                    Prices.set(id - 1, price);
-                    System.out.println("Ticket Price has been changed to " + price);
-                }
-                else if (number == 3) {
-                    System.out.println("Ticket Prices:");
+                        System.out.println("Enter the ticket id number: ");
+                        int id = obj.nextInt();
+                        System.out.println("Enter the ticket price: ");
+                        double price = obj.nextDouble();
 
-                    int u = 0;
-                    for (int i = 0; i < Prices.size(); i++) {
-                        u++;
-                        System.out.println(u + ". " + Prices.get(i));
+                        Prices.set(id - 1, price);
+                        System.out.println("Ticket Price has been changed to " + price);
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input.");
                     }
+                } else if (number == 3) {
+                    try{
+                        System.out.println("Ticket Prices:");
 
-                    System.out.println("Enter the ticket id number: ");
-                    int id = obj.nextInt();
-                    Prices.remove(id - 1);
-                    System.out.println("The ticket price has been deleted");
-                }
-                else if (number == 4) {
-                    System.out.println("Ticket Prices:");
+                        int u = 0;
+                        for (int i = 0; i < Prices.size(); i++) {
+                            u++;
+                            System.out.println(u + ". " + Prices.get(i));
+                        }
 
-                    for (int i = 0; i < Prices.size(); i++) {
-                        System.out.println(Prices.get(i) + "€");
+                        System.out.println("Enter the ticket id number: ");
+                        int id = obj.nextInt();
+                        Prices.remove(id - 1);
+                        System.out.println("The ticket price has been deleted");
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input.");
+                    }
+                } else if (number == 4) {
+                    try {
+                        System.out.println("Ticket Prices:");
+
+                        for (int i = 0; i < Prices.size(); i++) {
+                            System.out.println(Prices.get(i) + "€");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input.");
                     }
                 } else if (number == 5) {
-                    for (Double num : Prices) {
-                        sum += num;
-                    }
-                    System.out.println("Total sales: " + sum);
+                    try {
+                        for (Double num : Prices) {
+                            sum += num;
+                        }
+                        System.out.println("Total sales: " + sum);
 
-                }else if (number == 6) {
-                    double average = sum / Prices.size();
-                    System.out.println("Average: " + average);
-
-                }else if (number == 7) {
-                    double max = Prices.getFirst();
-                    // loop to find maximum value from ArrayList
-                    for (int i = 1; i < Prices.size(); i++) {
-                        if (max < Prices.get(i))
-                            max = Prices.get(i);
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input.");
                     }
-                    System.out.println("Maximum ticket price is : " + max);
+                } else if (number == 6) {
+                    try {
+                        double average = sum / Prices.size();
+                        System.out.println("Average: " + average);
 
-                }else if (number == 8) {
-                    double min = Prices.getFirst();
-                    // loop to find minimum value from ArrayList
-                    for (int i = 1; i < Prices.size(); i++) {
-                        if (min > Prices.get(i))
-                            min = Prices.get(i);
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input.");
                     }
-                    System.out.println("Minimum ticket price is : " + min);
-                }
-                else if (number == 9) {
+                } else if (number == 7) {
+                    try {
+                        double max = Prices.getFirst();
+                        // loop to find the maximum value from the array
+                        for (int i = 1; i < Prices.size(); i++) {
+                            if (max < Prices.get(i))
+                                max = Prices.get(i);
+                        }
+                        System.out.println("Maximum ticket price is : " + max);
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input.");
+                    }
+                } else if (number == 8) {
+                    try {
+                        double min = Prices.getFirst();
+                        // loop to find the minimum value from the array
+                        for (int i = 1; i < Prices.size(); i++) {
+                            if (min > Prices.get(i))
+                                min = Prices.get(i);
+                        }
+                        System.out.println("Minimum ticket price is : " + min);
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input.");
+                    }
+                } else if (number == 9) {
                     System.out.println("Thank you have a great day! \nExiting...");
                     obj.close();
                     System.exit(0);
                 }
+            } catch (InputMismatchException e) { // Checks menu option input
+                System.out.println("Invalid input. \n");
+                obj.nextLine();
+            }
         }
     }
 }
