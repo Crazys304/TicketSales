@@ -81,13 +81,19 @@ public class Main {
 
                         System.out.println("Enter the ticket id number: ");
                         int id = obj.nextInt();
-                        System.out.println("Enter the ticket price: ");
-                        double price = obj.nextDouble();
 
-                        NegativePrice(price);
+                        if (id < Prices.size() || id > Prices.size()) {
+                            System.out.println("Invalid input.");
+                        } else {
+                            System.out.println("Enter the ticket price: ");
+                            double price = obj.nextDouble();
+                            
+                            NegativePrice(price);
 
-                        Prices.set(id - 1, price);
-                        System.out.println("Ticket Price has been changed to " + price);
+                            Prices.set(id - 1, price);
+                            System.out.println("Ticket Price has been changed to " + price);
+                        }
+
                     } catch (NegativePriceException e) {
                         System.out.println(e.getMessage());
                     } catch (InputMismatchException e) {
