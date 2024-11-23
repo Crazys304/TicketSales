@@ -2,7 +2,32 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+class InvalidMenuInputException extends Exception {
+    public InvalidMenuInputException() {
+        super("Invalid option. Input numbers between 1 and 9");
+    }
+}
+
+class NegativePriceException extends Exception {
+    public NegativePriceException() {
+        super("The Price cannot be negative");
+    }
+}
+
 public class Main {
+
+    public static void InvalidMenuInput(int number) throws InvalidMenuInputException {
+        if (number < 1 || number > 9) {
+            throw new InvalidMenuInputException();
+        }
+    }
+
+    public static void NegativePrice(double price) throws NegativePriceException {
+        if (price < 0.0) {
+            throw new NegativePriceException();
+        }
+    }
+
     public static void main(String[] args) {
         Scanner obj = new Scanner(System.in);
         ArrayList<Double> Prices = new ArrayList<Double>();
@@ -31,17 +56,21 @@ public class Main {
                 obj.nextLine();
 
                 if (number == 1) {
-                    try{
+                    try {
                         System.out.println("Enter the ticket price: ");
                         double price = obj.nextDouble();
 
+                        NegativePrice(price);
+
                         Prices.add(price);
 
+                    } catch (NegativePriceException e) {
+                        System.out.println(e.getMessage());
                     } catch (InputMismatchException e) {
                         System.out.println("Invalid input.");
                     }
                 } else if (number == 2) {
-                    try{
+                    try {
                         System.out.println("Ticket Prices:");
 
                         int u = 0;
@@ -55,9 +84,12 @@ public class Main {
                         System.out.println("Enter the ticket price: ");
                         double price = obj.nextDouble();
 
+                        NegativePrice(price);
+
                         Prices.set(id - 1, price);
                         System.out.println("Ticket Price has been changed to " + price);
-
+                    } catch (NegativePriceException e) {
+                        System.out.println(e.getMessage());
                     } catch (InputMismatchException e) {
                         System.out.println("Invalid input.");
                     }
@@ -73,11 +105,15 @@ public class Main {
 
                         System.out.println("Enter the ticket id number: ");
                         int id = obj.nextInt();
-                        Prices.remove(id - 1);
-                        System.out.println("The ticket price has been deleted");
+                        if (id < Prices.size() || id > Prices.size()) {
+                            System.out.println("Invalid input.");
+                        } else {
+                            Prices.remove(id - 1);
+                            System.out.println("The ticket price has been deleted");
 
+                        }
                     } catch (InputMismatchException e) {
-                        System.out.println("Invalid input.");
+                        System.out.println("Invalid input. Try again");
                     }
                 } else if (number == 4) {
                     try {
@@ -137,6 +173,12 @@ public class Main {
                     System.out.println("Thank you have a great day! \nExiting...");
                     obj.close();
                     System.exit(0);
+                } else {
+                    try {
+                        InvalidMenuInput(number);
+                    } catch (InvalidMenuInputException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
             } catch (InputMismatchException e) { // Checks menu option input
                 System.out.println("Invalid input. \n");
