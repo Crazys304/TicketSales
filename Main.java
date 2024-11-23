@@ -86,7 +86,7 @@ public class Main {
                         System.out.println("Enter the ticket id number: ");
                         int id = obj.nextInt();
                         // Checks if id is valid
-                        if (id < Prices.size() || id > Prices.size()) {
+                        if (id < 1 || id > Prices.size()) {
                             System.out.println("Invalid input.");
                         } else {
                             System.out.println("Enter the ticket price: ");
@@ -120,7 +120,7 @@ public class Main {
                         System.out.println("Enter the ticket id number: ");
                         int id = obj.nextInt();
                         // Checks if id is valid
-                        if (id < Prices.size() || id > Prices.size()) {
+                        if (id < 1 || id > Prices.size()) {
                             System.out.println("Invalid input.");
                         } else {
                             Prices.remove(id - 1); // Removes the selected price
