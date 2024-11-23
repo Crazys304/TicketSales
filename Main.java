@@ -50,7 +50,7 @@ public class Main {
                                 "\n|9. Print total ticket count     |" +
                                 "\n|10. Exit                        |" +
                                 "\n----------------------------------" +
-                                "\nEnter command (1 to 10): "
+                                "\nEnter command (1 to 9): "
                 );
 
                 int number = obj.nextInt();
@@ -87,7 +87,7 @@ public class Main {
                         int id = obj.nextInt();
                         // Checks if id is valid
                         if (id < Prices.size() || id > Prices.size()) {
-                            System.out.println("Invalid input");
+                            System.out.println("Invalid input.");
                         } else {
                             System.out.println("Enter the ticket price: ");
                             double price = obj.nextDouble();
