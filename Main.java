@@ -76,17 +76,16 @@ public class Main {
                     }
                     try {
                         System.out.println("Ticket Prices:");
+
                         // Displays all the ticket prices with respective indexes
-                        int u = 0;
                         for (int i = 0; i < Prices.size(); i++) {
-                            u++;
-                            System.out.println(u + ". " + Prices.get(i) + "€");
+                            System.out.println("Index: " + i + " Price: €" + Prices.get(i));
                         }
 
                         System.out.println("Enter the ticket id number: ");
                         int id = obj.nextInt();
                         // Checks if id is valid
-                        if (id < 1 || id > Prices.size()) {
+                        if (id < 0 || id > Prices.size()) {
                             System.out.println("Invalid input.");
                         } else {
                             System.out.println("Enter the ticket price: ");
@@ -94,7 +93,7 @@ public class Main {
                             
                             NegativePrice(price); // Checks if new price is not negative
 
-                            Prices.set(id - 1, price); // Updates the price
+                            Prices.set(id, price); // Updates the price
                             System.out.println("Ticket Price has been changed to " + price);
                         }
 
@@ -110,20 +109,19 @@ public class Main {
                     }
                     try{
                         System.out.println("Ticket Prices:");
+
                         // Displays all the ticket prices with respective indexes
-                        int u = 0;
                         for (int i = 0; i < Prices.size(); i++) {
-                            u++;
-                            System.out.println(u + ". " + Prices.get(i));
+                            System.out.println("Index: " + i + " Price: €" + Prices.get(i));
                         }
 
                         System.out.println("Enter the ticket id number: ");
                         int id = obj.nextInt();
                         // Checks if id is valid
-                        if (id < 1 || id > Prices.size()) {
+                        if (id < 0 || id > Prices.size()) {
                             System.out.println("Invalid input.");
                         } else {
-                            Prices.remove(id - 1); // Removes the selected price
+                            Prices.remove(id); // Removes the selected price
                             System.out.println("The ticket price has been deleted");
 
                         }
@@ -138,7 +136,7 @@ public class Main {
                     System.out.println("Ticket Prices:");
                     // Prints out all ticket prices
                     for (int i = 0; i < Prices.size(); i++) {
-                        System.out.println(Prices.get(i) + "€");
+                        System.out.println("Index: " + i + " Price: €" + Prices.get(i));
                     }
                 } else if (number == 5) {
                     if (Prices.isEmpty()) {
