@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 
 class InvalidMenuInputException extends Exception { // Custom exception for main menu input
     public InvalidMenuInputException() {
-        super("Invalid option. Input numbers between 1 and 10");
+        super("Invalid option. Input numbers between 1 and 11");
     }
 }
 
@@ -17,7 +17,7 @@ class NegativePriceException extends Exception { // Custom exception for negativ
 public class Main {
     // Checks if menu input is between 1 and 10
     public static void InvalidMenuInput(int number) throws InvalidMenuInputException {
-        if (number < 1 || number > 10) {
+        if (number < 1 || number > 11) {
             throw new InvalidMenuInputException();
         }
     }
@@ -48,9 +48,10 @@ public class Main {
                                 "\n|7. Find maximum price           |" +
                                 "\n|8. Find minimum price           |" +
                                 "\n|9. Print total ticket count     |" +
-                                "\n|10. Exit                        |" +
+                                "\n|10. Clear all tickets           |" +
+                                "\n|11. Exit                        |" +
                                 "\n----------------------------------" +
-                                "\nEnter command (1 to 10): "
+                                "\nEnter command (1 to 11): "
                 );
 
                 int number = obj.nextInt();
@@ -79,7 +80,7 @@ public class Main {
 
                         // Displays all the ticket prices with respective indexes
                         for (int i = 0; i < Prices.size(); i++) {
-                            System.out.println("Index: " + i + " Price: €" + Prices.get(i));
+                            System.out.println("Index: " + i + " Price: € " + Prices.get(i));
                         }
 
                         System.out.println("Enter the ticket id number: ");
@@ -112,7 +113,7 @@ public class Main {
 
                         // Displays all the ticket prices with respective indexes
                         for (int i = 0; i < Prices.size(); i++) {
-                            System.out.println("Index: " + i + " Price: €" + Prices.get(i));
+                            System.out.println("Index: " + i + " Price: € " + Prices.get(i));
                         }
 
                         System.out.println("Enter the ticket id number: ");
@@ -136,7 +137,7 @@ public class Main {
                     System.out.println("Ticket Prices:");
                     // Prints out all ticket prices
                     for (int i = 0; i < Prices.size(); i++) {
-                        System.out.println("Index: " + i + " Price: €" + Prices.get(i));
+                        System.out.println("Index: " + i + " Price: € " + Prices.get(i));
                     }
                 } else if (number == 5) {
                     if (Prices.isEmpty()) {
@@ -188,8 +189,32 @@ public class Main {
                     }
                     // Prints out total ticket count in array
                     System.out.println("Total ticket count is " + Prices.size());
+                }else if (number == 10) {
+                    if (Prices.isEmpty()) {
+                        System.out.println("No ticket prices available.");
+                        continue;
+                    }
+                    while (true) {
+                        System.out.println("Are you sure you want to clear all ticket prices?" +
+                                "\n--------------" +
+                                "\n|1. Yes      |" +
+                                "\n|2. No       |" +
+                                "\n--------------"
+                        );
+                        int numbo = obj.nextInt();
+                        obj.nextLine();
 
-                } else if (number == 10) {
+                        if (numbo == 1) { // Clears all prices from the array
+                            Prices.clear();
+                            System.out.println("Successfully cleared all ticket prices");
+                            break;
+                        } else if (numbo == 2) {
+                            break;
+                        } else {
+                            System.out.println("Invalid input.");
+                        }
+                    }
+                } else if (number == 11) {
                     System.out.println("Thank you have a great day! \nExiting...");
                     obj.close();
                     System.exit(0);
