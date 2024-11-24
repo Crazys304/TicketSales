@@ -21,7 +21,7 @@ public class Main {
             throw new InvalidMenuInputException();
         }
     }
-    // Checks if inputed ticket price is not negative
+    // Checks if inputted ticket price is not negative
     public static void NegativePrice(double price) throws NegativePriceException {
         if (price < 0.0) {
             throw new NegativePriceException();
@@ -31,7 +31,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner obj = new Scanner(System.in);
         ArrayList<Double> Prices = new ArrayList<Double>(); // List to store ticket prices
-        double sum = 0;
 
         while (true) {
             try {
@@ -80,7 +79,7 @@ public class Main {
 
                         // Displays all the ticket prices with respective indexes
                         for (int i = 0; i < Prices.size(); i++) {
-                            System.out.println("Index: " + i + " Price: € " + Prices.get(i));
+                            System.out.println("Index: " + i + " Price: €" + Prices.get(i));
                         }
 
                         System.out.println("Enter the ticket id number: ");
@@ -113,7 +112,7 @@ public class Main {
 
                         // Displays all the ticket prices with respective indexes
                         for (int i = 0; i < Prices.size(); i++) {
-                            System.out.println("Index: " + i + " Price: € " + Prices.get(i));
+                            System.out.println("Index: " + i + " Price: €" + Prices.get(i));
                         }
 
                         System.out.println("Enter the ticket id number: ");
@@ -137,13 +136,16 @@ public class Main {
                     System.out.println("Ticket Prices:");
                     // Prints out all ticket prices
                     for (int i = 0; i < Prices.size(); i++) {
-                        System.out.println("Index: " + i + " Price: € " + Prices.get(i));
+                        System.out.println("Index: " + i + " Price: €" + Prices.get(i));
                     }
                 } else if (number == 5) {
                     if (Prices.isEmpty()) {
                         System.out.println("No ticket prices available.");
                         continue;
                     }
+
+                    double sum = 0;
+
                     for (Double num : Prices) { // Loop through all ticket prices in the 'Prices' list
                         sum += num; // Adds each ticket price to the 'sum' variable
                     }
@@ -154,6 +156,12 @@ public class Main {
                         System.out.println("No ticket prices available.");
                         continue;
                     }
+                    double sum = 0;
+
+                    for (Double num : Prices) { // Loop through all ticket prices in the 'Prices' list
+                        sum += num; // Adds each ticket price to the 'sum' variable
+                    }
+
                     double average = sum / Prices.size(); // Divides the total sum by the number of prices in array
                     System.out.println("Average: " + average);
 
